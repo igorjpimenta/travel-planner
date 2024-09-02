@@ -18,6 +18,7 @@ def test_registry_link():
     link_infos = {
         'id': str(uuid.uuid4()),
         'trip_id': trip_id,
+        'title': 'Example',
         'link': 'example.com',
     }
 
@@ -29,4 +30,8 @@ def test_find_links_from_trip():
     links_repo = LinksRepository(conn)
 
     links = links_repo.find_links_from_trip(trip_id)
+
+    assert isinstance(links, list)
+    assert isinstance(links[0], tuple)
+
     print(links)

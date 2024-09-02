@@ -31,8 +31,11 @@ def test_find_trip_by_id():
     conn = db_connection_handler.get_connection()
     trips_repo = TripsRepository(conn)
 
-    trips = trips_repo.find_trip_by_id(trip_id)
-    print(trips)
+    trip = trips_repo.find_trip_by_id(trip_id)
+
+    assert isinstance(trip, tuple)
+
+    print(trip)
 
 
 def test_update_trip_status():

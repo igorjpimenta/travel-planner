@@ -29,4 +29,8 @@ def test_find_emails_from_trip():
     emails_to_invite_repo = EmailsToInviteRepository(conn)
 
     emails = emails_to_invite_repo.find_emails_from_trip(trip_id)
+
+    assert isinstance(emails, list)
+    assert isinstance(emails[0], tuple)
+
     print(emails)
