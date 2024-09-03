@@ -27,3 +27,16 @@ def invite_participant_to_trip(trip_id):
     response = controller.create(request.json, trip_id)
 
     return jsonify(response.get('body')), response.get('status_code')
+
+
+@trip_participants_routes_bp.route('/', methods=['GET'])
+def find_trip_invites(trip_id):
+    conn = db_connection_handler.get_connection()
+
+    participants_repo = ParticipantsRepository(conn)
+    trips_repo = TripsRepository(conn)
+    controller = ParticipantFinder(participants_repo, trips_repo)
+
+    response = controller.find(trip_id)
+
+    return jsonify(response.get('body')), response.get('status_code')
