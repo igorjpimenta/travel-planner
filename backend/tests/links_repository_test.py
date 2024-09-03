@@ -1,10 +1,6 @@
 import uuid
-from src.models.repositories.links_repository import (
-    LinksRepository
-)
-from src.models.settings.db_connection_handler import (
-    db_connection_handler
-)
+from src.models.repositories import LinksRepository
+from src.models.settings import db_connection_handler
 
 
 db_connection_handler.connect()
@@ -32,6 +28,7 @@ def test_find_links_from_trip():
     links = links_repo.find_links_from_trip(trip_id)
 
     assert isinstance(links, list)
-    assert isinstance(links[0], tuple)
+    for item in links:
+        assert isinstance(item, tuple)
 
     print(links)

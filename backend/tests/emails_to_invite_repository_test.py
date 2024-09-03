@@ -1,10 +1,6 @@
 import uuid
-from src.models.repositories.emails_to_invite_repository import (
-    EmailsToInviteRepository
-)
-from src.models.settings.db_connection_handler import (
-    db_connection_handler
-)
+from src.models.repositories import EmailsToInviteRepository
+from src.models.settings import db_connection_handler
 
 
 db_connection_handler.connect()
@@ -31,6 +27,7 @@ def test_find_emails_from_trip():
     emails = emails_to_invite_repo.find_emails_from_trip(trip_id)
 
     assert isinstance(emails, list)
-    assert isinstance(emails[0], tuple)
+    for item in emails:
+        assert isinstance(item, tuple)
 
     print(emails)

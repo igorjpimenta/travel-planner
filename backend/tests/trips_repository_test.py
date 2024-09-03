@@ -1,8 +1,6 @@
 import uuid
-from src.models.repositories.trips_repository import TripsRepository
-from src.models.settings.db_connection_handler import (
-    db_connection_handler
-)
+from src.models.repositories import TripsRepository
+from src.models.settings import db_connection_handler
 from datetime import datetime, timedelta
 
 
@@ -44,3 +42,10 @@ def test_update_trip_status():
     trips_repo = TripsRepository(conn)
 
     trips_repo.update_trip_status(trip_id)
+
+    trip = trips_repo.find_trip_by_id(trip_id)
+
+    assert trip is not None
+    assert len(trip) == 7 and trip[6] == 1
+
+    print(trip)
