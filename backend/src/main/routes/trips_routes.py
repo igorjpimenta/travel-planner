@@ -1,5 +1,5 @@
 from flask import jsonify, Blueprint, request
-from src.controllers import TripCreator, TripFinder
+from src.controllers import TripCreator, TripFinder, TripConfirmer
 from src.models.repositories.trips_repository import TripsRepository
 from src.models.repositories.emails_to_invite_repository import (
     EmailsToInviteRepository
@@ -31,6 +31,18 @@ def find_trip(trip_id):
 
     trips_repo = TripsRepository(conn)
     controller = TripFinder(trips_repo)
+
+    response = controller.find_trip_details(trip_id)
+
+    return jsonify(response.get('body')), response.get('status_code')
+
+
+@trips_routes_bp.route('/<trip_id>/confirm', methods=['PATCH'])
+def confirm_trip(trip_id):
+    conn = db_connection_handler.get_connection()
+
+    trips_repo = TripsRepository(conn)
+    controller = TripConfirmer(trips_repo)
 
     response = controller.find_trip_details(trip_id)
 

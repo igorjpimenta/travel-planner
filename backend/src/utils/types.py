@@ -1,6 +1,6 @@
-from typing import Dict, TypedDict
+from typing import Dict, TypedDict, Optional
 
 
 class ResponseType(TypedDict):
-    body: Dict[str, str]
+    body: Optional[Dict[str, str]]
     status_code: int
