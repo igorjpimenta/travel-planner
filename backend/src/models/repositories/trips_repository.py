@@ -10,15 +10,15 @@ class TripsRepository:
         cursor = self.__conn.cursor()
         cursor.execute(
             'insert into trips\
-                (id, destination, start_date, end_date, owner_name, \
+                (id, destination, starts_at, ends_at, owner_name, \
                 owner_email)\
             values\
                 (?, ?, ?, ?, ?, ?);',
             (
                 trip_infos['id'],
                 trip_infos['destination'],
-                trip_infos['start_date'],
-                trip_infos['end_date'],
+                trip_infos['starts_at'],
+                trip_infos['ends_at'],
                 trip_infos['owner_name'],
                 trip_infos['owner_email'],
             ),

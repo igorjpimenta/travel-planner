@@ -17,8 +17,8 @@ def test_create_trip():
     trip_infos = {
         'id': trip_id,
         'destination': 'Osasco',
-        'start_date': datetime.strptime('2024-02-01', '%Y-%m-%d'),
-        'end_date': datetime.strptime('2024-02-01', '%Y-%m-%d') +
+        'starts_at': datetime.strptime('2024-02-01', '%Y-%m-%d'),
+        'ends_at': datetime.strptime('2024-02-01', '%Y-%m-%d') +
         timedelta(days=5),
         'owner_name': 'Osvaldo',
         'owner_email': 'osvaldo@examples.com'
