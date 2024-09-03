@@ -39,9 +39,9 @@ class ParticipantsRepository:
             (trip_id,),
         )
 
-        links = cursor.fetchall()
+        participants = cursor.fetchall()
 
-        return links
+        return participants
 
     def update_participant_confirmation(self, participant_id: str) -> None:
         cursor = self.__conn.cursor()
