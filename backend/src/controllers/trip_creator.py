@@ -28,11 +28,12 @@ class TripCreator:
                 'body': {'id': trip_id},
                 'status_code': 201
             }
+
         except Exception as e:
             return {
                 'body': {
-                    'error': 'Bad Request',
+                    'error': 'Internal Server Error',
                     'message': str(e)
                 },
-                'status_code': 400
+                'status_code': 500
             }

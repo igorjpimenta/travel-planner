@@ -1,8 +1,6 @@
 from flask import jsonify, Blueprint, request
 from src.controllers import LinkCreator, LinkFinder
-from src.models.repositories import (
-    LinksRepository,
-)
+from src.models.repositories import TripsRepository, LinksRepository
 from src.models.settings.db_connection_handler import (
     db_connection_handler
 )
@@ -16,7 +14,8 @@ def registry_trip_link(trip_id):
     conn = db_connection_handler.get_connection()
 
     links_repo = LinksRepository(conn)
-    controller = LinkCreator(links_repo)
+    trips_repo = TripsRepository(conn)
+    controller = LinkCreator(links_repo, trips_repo)
 
     response = controller.create(request.json, trip_id)
 
@@ -28,7 +27,8 @@ def find_trip_links(trip_id):
     conn = db_connection_handler.get_connection()
 
     links_repo = LinksRepository(conn)
-    controller = LinkFinder(links_repo)
+    trips_repo = TripsRepository(conn)
+    controller = LinkFinder(links_repo, trips_repo)
 
     response = controller.find(trip_id)
 

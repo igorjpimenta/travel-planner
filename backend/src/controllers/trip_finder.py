@@ -1,4 +1,5 @@
 from src.utils.types import ResponseType
+from src.utils.exceptions import NotFoundException
 
 
 class TripFinder:
@@ -10,7 +11,7 @@ class TripFinder:
             trip = self.__trips_repository.find_trip_by_id(trip_id)
 
             if not trip:
-                raise Exception('No trip found with given id')
+                raise NotFoundException('No trip found with given id')
 
             return {
                 'body': {
@@ -22,11 +23,21 @@ class TripFinder:
                 },
                 'status_code': 200
             }
+
+        except NotFoundException as e:
+            return {
+                'body': {
+                    'error': 'Not Found',
+                    'message': str(e)
+                },
+                'status_code': 404
+            }
+
         except Exception as e:
             return {
                 'body': {
-                    'error': 'Bad Request',
+                    'error': 'Internal Server Error',
                     'message': str(e)
                 },
-                'status_code': 400
+                'status_code': 500
             }
