@@ -22,3 +22,8 @@ app.register_blueprint(
     blueprint=trip_participants_routes_bp,
     url_prefix='/trips/<trip_id>/invites'
 )
+
+app.register_blueprint(
+    blueprint=trip_activities_routes_bp,
+    url_prefix='/trips/<trip_id>/activities'
+)

@@ -6,3 +6,4 @@ from .link_finder import LinkFinder
 from .participant_creator import ParticipantCreator
 from .participant_finder import ParticipantFinder
 from .participant_confirmer import ParticipantConfirmer
+from .activity_creator import ActivityCreator
