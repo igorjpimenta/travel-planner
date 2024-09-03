@@ -19,7 +19,7 @@ def test_registry_link():
         'id': str(uuid.uuid4()),
         'trip_id': trip_id,
         'title': 'Example',
-        'link': 'example.com',
+        'url': 'example.com',
     }
 
     links_repo.registry_link(link_infos)
