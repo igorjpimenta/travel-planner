@@ -1,6 +1,6 @@
 import sqlite3
 from sqlite3 import Connection
-from backend.settings import SQLITE_PATH
+from settings import SQLITE_PATH
 
 
 class DbConnectionHandler:

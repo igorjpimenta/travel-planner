@@ -1,8 +1,8 @@
 import uuid
-from backend.src.models.repositories.emails_to_invite_repository import (
+from src.models.repositories.emails_to_invite_repository import (
     EmailsToInviteRepository
 )
-from backend.src.models.settings.db_connection_handler import (
+from src.models.settings.db_connection_handler import (
     db_connection_handler
 )
 

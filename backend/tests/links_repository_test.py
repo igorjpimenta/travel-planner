@@ -1,8 +1,8 @@
 import uuid
-from backend.src.models.repositories.links_repository import (
+from src.models.repositories.links_repository import (
     LinksRepository
 )
-from backend.src.models.settings.db_connection_handler import (
+from src.models.settings.db_connection_handler import (
     db_connection_handler
 )
 

@@ -1,6 +1,6 @@
 import uuid
-from backend.src.models.repositories.trips_repository import TripsRepository
-from backend.src.models.settings.db_connection_handler import (
+from src.models.repositories.trips_repository import TripsRepository
+from src.models.settings.db_connection_handler import (
     db_connection_handler
 )
 from datetime import datetime, timedelta

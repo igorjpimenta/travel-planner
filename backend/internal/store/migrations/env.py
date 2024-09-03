@@ -11,13 +11,13 @@ import sys
 sys.path.append(
     os.path.abspath(
         os.path.join(
-            os.path.dirname(__file__), '../../../..'
+            os.path.dirname(__file__), '../../..'
         )
     )
 )
 
-from backend.settings import SQLITE_PATH  # noqa: E402
-from backend.internal.store.models import Base  # noqa: E402
+from settings import SQLITE_PATH  # noqa: E402
+from internal.store.models import Base  # noqa: E402
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
