@@ -8,6 +8,8 @@ from datetime import datetime, timedelta
 
 db_connection_handler.connect()
 trip_id = str(uuid.uuid4())
+starts_at = datetime.strptime('2024-02-01', '%Y-%m-%d')
+ends_at = starts_at + timedelta(days=5)
 
 
 def test_create_trip():
@@ -17,9 +19,8 @@ def test_create_trip():
     trip_infos = {
         'id': trip_id,
         'destination': 'Osasco',
-        'starts_at': datetime.strptime('2024-02-01', '%Y-%m-%d'),
-        'ends_at': datetime.strptime('2024-02-01', '%Y-%m-%d') +
-        timedelta(days=5),
+        'starts_at': starts_at,
+        'ends_at': ends_at,
         'owner_name': 'Osvaldo',
         'owner_email': 'osvaldo@examples.com'
     }

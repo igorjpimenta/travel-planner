@@ -33,7 +33,7 @@ def find_trip(trip_id):
     trips_repo = TripsRepository(conn)
     controller = TripFinder(trips_repo)
 
-    response = controller.find_trip_details(trip_id)
+    response = controller.find(trip_id)
 
     return jsonify(response.get('body')), response.get('status_code')
 
@@ -45,7 +45,7 @@ def confirm_trip(trip_id):
     trips_repo = TripsRepository(conn)
     controller = TripConfirmer(trips_repo)
 
-    response = controller.find_trip_details(trip_id)
+    response = controller.confirm(trip_id)
 
     return jsonify(response.get('body')), response.get('status_code')
 
