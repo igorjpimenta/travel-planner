@@ -1,5 +1,9 @@
 from flask import jsonify, Blueprint, request
-from src.controllers import ParticipantCreator, ParticipantFinder
+from src.controllers import (
+    ParticipantCreator,
+    ParticipantFinder,
+    ParticipantConfirmer
+)
 from src.models.repositories import (
     ParticipantsRepository,
     EmailsToInviteRepository,
@@ -38,5 +42,21 @@ def find_trip_invites(trip_id):
     controller = ParticipantFinder(participants_repo, trips_repo)
 
     response = controller.find(trip_id)
+
+    return jsonify(response.get('body')), response.get('status_code')
+
+
+@trip_participants_routes_bp.route(
+    '/<participant_id>/confirm',
+    methods=['PATCH'],
+)
+def confirm_trip_invite(trip_id, participant_id):
+    conn = db_connection_handler.get_connection()
+
+    participants_repo = ParticipantsRepository(conn)
+    trips_repo = TripsRepository(conn)
+    controller = ParticipantConfirmer(participants_repo, trips_repo)
+
+    response = controller.confirm(trip_id, participant_id)
 
     return jsonify(response.get('body')), response.get('status_code')
