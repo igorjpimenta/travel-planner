@@ -1,3 +1,14 @@
+import { CreateTrip } from "./pages/create-trip"
+
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <CreateTrip />,
+  },
+])
+
 export function App() {
-  return <h1>Hello world</h1>
+  return <RouterProvider router={router} />
 }
