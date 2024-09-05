@@ -32,6 +32,7 @@
 
 ## Tech Stack
 
+- **Frontend**: React, TypeScript, Tailwind CSS
 - **Backend**: Python (Flask)
 - **Database**: SQLite (managed using Alembic)
 - **Email Integration**: For sending important notifications
@@ -127,7 +128,7 @@ We welcome contributions from the community! Here's how you can get involved:
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Acknowledgments
-- Inspired by an event from Rocketseat, the main backend repo is available [here](https://github.com/rocketseat-education/nlw-journey-python).
+- Inspired by an event from Rocketseat, the main backend repo is available [here](https://github.com/rocketseat-education/nlw-journey-python), and frontend [here](https://github.com/rocketseat-education/nlw-journey-react).
 
 ## Contact
 May you have questions or suggestions, feel free to open an issue or contact the project maintainers.
