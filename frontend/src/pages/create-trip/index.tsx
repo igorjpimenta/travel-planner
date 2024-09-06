@@ -1,13 +1,16 @@
-import { InviteGuestsModal } from './invite-guests-modal'
-import { ConfirmTripModal } from './confirm-trip-modal'
+import { InviteGuestsModal } from './modals/invite-guests-modal'
+import { CreateTripModal } from './modals/create-trip-modal'
 import { DestinationAndDateStep } from './steps/destination-and-date-step'
-
-import { FormEvent, useState } from 'react'
 import { InviteGuestsStep } from './steps/invite-guests-step'
 
+import { FormEvent, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 export function CreateTrip() {
+  const navigate = useNavigate()
+
   const [isGuestsInputOnpen, setIsGuestsInputOpen] = useState(false)
-  const [isGuestsModalOnpen, setIsGuestsModalOpen] = useState(false)
+  const [isInviteGuestsModalOnpen, setIsInviteGuestsModalOpen] = useState(false)
   const [isConfirmedTripModalOnpen, setIsConfirmedTripModalOpen] = useState(false)
 
   const [emailsToInvite, setEmailsToInvite] = useState<string[]>([])
@@ -20,12 +23,12 @@ export function CreateTrip() {
     setIsGuestsInputOpen(false)
   }
 
-  function openGuestsModal() {
-    setIsGuestsModalOpen(true)
+  function openInviteGuestsModal() {
+    setIsInviteGuestsModalOpen(true)
   }
 
-  function closeGuestsModal() {
-    setIsGuestsModalOpen(false)
+  function closeInviteGuestsModal() {
+    setIsInviteGuestsModalOpen(false)
   }
 
   function openConfirmedTripModal() {
@@ -61,6 +64,8 @@ export function CreateTrip() {
 
   function createTrip(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+
+    navigate('/trips/12345')
   }
 
   return (
@@ -84,7 +89,7 @@ export function CreateTrip() {
           {isGuestsInputOnpen && (
             <InviteGuestsStep
               emailsToInvite={emailsToInvite}
-              openGuestsModal={openGuestsModal}
+              openInviteGuestsModal={openInviteGuestsModal}
               openConfirmedTripModal={openConfirmedTripModal}
             />
           )}
@@ -96,19 +101,19 @@ export function CreateTrip() {
         </p>
       </div>
 
-      {isGuestsModalOnpen && (
+      {isInviteGuestsModalOnpen && (
         <InviteGuestsModal
           emailsToInvite={emailsToInvite}
           addNewEmailToInvite={addNewEmailToInvite}
           removeEmailFromInvites={removeEmailFromInvites}
-          closeGuestsModal={closeGuestsModal}
+          closeModalSetter={closeInviteGuestsModal}
         />
       )}
 
       {isConfirmedTripModalOnpen && (
-        <ConfirmTripModal
-          closeConfirmedTripModal={closeConfirmedTripModal}
-          createTrip={createTrip}
+        <CreateTripModal
+          closeModalSetter={closeConfirmedTripModal}
+          onSubmit={createTrip}
         />
       )}
     </div>
