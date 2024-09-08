@@ -1,4 +1,5 @@
 import { Button } from "../../../components/button"
+import { LocationInputWrapper } from "../../../components/location-input-wrapper"
 import { InputWrapper } from "../../../components/input-wrapper"
 import { Modal, ModalProps } from "../../../components/modal"
 
@@ -19,7 +20,8 @@ export function ChangeTripInfosModal({ onSubmit, closeModalSetter }: ChangeTripI
         onSubmit={onSubmit}
         className="space-y-3"
       >
-        <InputWrapper
+
+        <LocationInputWrapper
           kind="absolute"
           classNames="flex-1"
           icon={MapPin}

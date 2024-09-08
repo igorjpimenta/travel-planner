@@ -2,7 +2,7 @@ import { ComponentProps, ReactNode } from "react"
 import { tv, VariantProps } from "tailwind-variants"
 
 const buttonVariants = tv({
-  base: "rounded-lg px-5 font-medium flex items-center justify-center gap-2",
+  base: "rounded-lg px-5 font-medium flex items-center justify-center gap-2 shrink-0",
   variants: {
     variant: {
       primary: "bg-lime-300 hover:bg-lime-400 text-lime-950",
@@ -12,7 +12,7 @@ const buttonVariants = tv({
       default: "py-2",
       icon: "p-2",
       full: "h-[42px] w-full",
-    }
+    },
   },
   defaultVariants: {
     variant: "primary",

@@ -2,11 +2,11 @@ import { Button } from "../../../components/button"
 
 import { Link2, Plus } from "lucide-react"
 
-interface UsefulLinksProps {
+interface HelpfulLinksProps {
   openAddNewLinkModal: () => void
 }
 
-export function UsefulLinks({ openAddNewLinkModal }: UsefulLinksProps) {
+export function HelpfulLinks({ openAddNewLinkModal }: HelpfulLinksProps) {
   return (
     <div className="space-y-6">
       <div className="flex justify-between">

@@ -1,5 +1,6 @@
 import { Button } from "../../../components/button"
 import { InputWrapper } from "../../../components/input-wrapper"
+import { LocationInputWrapper } from "../../../components/location-input-wrapper"
 
 import { ArrowRight, Calendar, MapPin, Settings2 } from "lucide-react"
 
@@ -16,7 +17,8 @@ export function DestinationAndDateStep({
 }: DestinationAndDateStepProps) {
   return (
     <div className="h-16 bg-zinc-900 px-4 rounded-xl flex items-center shadow-shape gap-3">
-      <InputWrapper
+      <LocationInputWrapper
+        spaceY={6}
         theme="transparent"
         classNames="flex-1"
         icon={MapPin}

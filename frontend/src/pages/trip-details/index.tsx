@@ -1,6 +1,6 @@
 import { DestinationAndDateHeader } from "./components/destination-and-date-header"
 import { Activities } from "./components/activities"
-import { UsefulLinks } from "./components/useful-links"
+import { HelpfulLinks } from "./components/helpful-links"
 import { Invitees } from "./components/invitees"
 import { Button } from "../../components/button"
 import { ChangeTripInfosModal } from "./modals/change-trip-infos-modal"
@@ -111,7 +111,7 @@ export function TripDetails() {
           </div>
 
           <div className="w-80 space-y-6">
-            <UsefulLinks openAddNewLinkModal={openAddNewLinkModal} />
+            <HelpfulLinks openAddNewLinkModal={openAddNewLinkModal} />
     
             <div className="w-full h-px bg-zinc-800"></div>
 

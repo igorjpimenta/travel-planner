@@ -44,6 +44,7 @@
 Before you begin, ensure you have the following installed:
 
 - [Python](https://www.python.org/downloads/)
+- [Node.js and npm](https://nodejs.org/)
 
 ### Installation
 
@@ -61,7 +62,8 @@ To run the project locally, follow these steps:
     SMTP_PORT=587
     SMTP_FROM_ADDR="your-smtp-address"
     SMTP_LOGIN="your-smtp-login"
-    SMTP_PASS="your-smtp-password"' > .env
+    SMTP_PASS="your-smtp-password"
+    VITE_MAPBOX_ACCESS_TOKEN="your-mapbox-access-token"' > .env
 
 3. **Create and activate a virtual environment**:
     ```bash
@@ -85,6 +87,12 @@ To run the project locally, follow these steps:
     alembic upgrade head
     ```
 
+6. **Install frontend dependencies**:
+    ```bash
+    cd ../frontend
+    npm install
+    ```
+
 ### Running the Application
 
 1. **Run the backend server**:
@@ -93,6 +101,13 @@ To run the project locally, follow these steps:
     python run.py
     ```
     The backend server will start on `http://localhost:3000`.
+
+2. **Run the frontend development server**:
+    ```bash
+    cd ../frontend
+    npm run dev
+    ```
+    The frontend application will start on `http://localhost:5173`.
 
 ## Contributing
 We welcome contributions from the community! Here's how you can get involved:
