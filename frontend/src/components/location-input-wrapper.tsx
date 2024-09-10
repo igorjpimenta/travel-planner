@@ -7,11 +7,17 @@ import debounce from "lodash.debounce"
 interface LocationInputWrapperProps extends InputWrapperProps {
   spaceY?: number
   fill?: boolean
+  initialValue?: string
 }
 
-export function LocationInputWrapper({ spaceY=1, fill=true, ...props }: LocationInputWrapperProps) {
+export function LocationInputWrapper({
+  initialValue='',
+  spaceY=1,
+  fill=true,
+  ...props
+}: LocationInputWrapperProps) {
   const [query, setQuery] = useState('')
-  const [inputValue, setInputValue] = useState('')
+  const [inputValue, setInputValue] = useState(initialValue)
   const [suggestions, setSuggestions] = useState<GetLocationSuggestionsResponse[]>([])
 
   function handleSelectLocation(selection: GetLocationSuggestionsResponse) {
@@ -35,7 +41,6 @@ export function LocationInputWrapper({ spaceY=1, fill=true, ...props }: Location
   }, 300)
 
   useEffect(() => {
-    setInputValue(query)
     handleGetLocationSuggestions(query)
 
     return () => {
@@ -46,13 +51,16 @@ export function LocationInputWrapper({ spaceY=1, fill=true, ...props }: Location
   return (
     <div className={`relative space-y-${spaceY} ${fill && "flex-1"}`}>
       <InputWrapper
-        {...props}
         value={inputValue}
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => {
+          setInputValue(e.target.value)
+          setQuery(e.target.value)
+        }}
+        {...props}
       />
 
       {suggestions.length > 0 && (
-        <ul className="absolute z-10 bg-zinc-950 border border-zinc-800 rounded-lg text-left truncate">
+        <ul className="absolute z-10 bg-zinc-900 shadow-shape rounded-lg text-left truncate">
           {suggestions.map((suggestion, index) => (
             <li
               key={index}

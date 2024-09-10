@@ -3,7 +3,6 @@ import { Activities } from "./components/activities"
 import { HelpfulLinks } from "./components/helpful-links"
 import { Invitees } from "./components/invitees"
 import { Button } from "../../components/button"
-import { ChangeTripInfosModal } from "./modals/change-trip-infos-modal"
 import { CreateActivityModal } from "./modals/create-activity-modal"
 import { AddNewLinkModal } from "./modals/add-new-link-modal"
 import { ManageGuestsModal } from "../trip-details/modals/manage-guests-modal"
@@ -12,19 +11,19 @@ import { Plus } from "lucide-react"
 import { FormEvent, useState } from "react"
 
 export function TripDetails() {
-  const [isChangeTripInfosModalOpen, setIsChangeTripInfosModalOpen] = useState(false)
+  const [isChangeTripInfosEnabled, setIsChangeTripInfosEnabled] = useState(false)
   const [isCreateActivityModalOpen, setIsCreateActivityModalOpen] = useState(false)
   const [isAddNewLinkModalOpen, setIsAddNewLinkModalOpen] = useState(false)
   const [isManageGuestsModalOpen, setIsManageGuestsModalOpen] = useState(false)
 
   const [guestsList, setGuestsList] = useState<string[]>([])
 
-  function openChangeTripInfosModal() {
-    setIsChangeTripInfosModalOpen(true)
+  function enableChangeTripInfos() {
+    setIsChangeTripInfosEnabled(true)
   }
 
-  function closeChangeTripInfosModal() {
-    setIsChangeTripInfosModalOpen(false)
+  function disableChangeTripInfos() {
+    setIsChangeTripInfosEnabled(false)
   }
 
   function openCreateActivityModal() {
@@ -52,6 +51,7 @@ export function TripDetails() {
   }
 
   function changeTripInfos() {
+    disableChangeTripInfos()
     return
   }
 
@@ -94,7 +94,11 @@ export function TripDetails() {
   return (
     <div className="h-screen">
       <div className="max-w-[1100px] px-6 py-10 mx-auto space-y-8">
-        <DestinationAndDateHeader openChangeTripInfosModal={openChangeTripInfosModal} />
+        <DestinationAndDateHeader
+          enableChangeTripInfos={enableChangeTripInfos}
+          changeTripInfos={changeTripInfos}
+          isChangeTripInfosEnabled={isChangeTripInfosEnabled}
+        />
 
         <main className="flex gap-16 px-4">
           <div className="flex-1 space-y-6">
@@ -131,13 +135,6 @@ export function TripDetails() {
         <AddNewLinkModal
           closeModalSetter={closeAddNewLinkModal}
           onSubmit={createLink}
-        />
-      )}
-
-      {isChangeTripInfosModalOpen && (
-        <ChangeTripInfosModal
-          closeModalSetter={closeChangeTripInfosModal}
-          onSubmit={changeTripInfos}
         />
       )}
 
