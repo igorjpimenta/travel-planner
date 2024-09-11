@@ -27,8 +27,8 @@ export function Day({
       className={`
         p-0 m-0.5 flex justify-center items-center cursor-pointer text-sm font-medium antialiased
         ${isInRange ? 'mx-0 px-0.5 bg-zinc-800 rounded-none' : ''}
-        ${isRangeStart ? 'rounded-l-full' : ''}
-        ${isRangeEnd ? 'rounded-r-full' : ''}
+        ${isRangeStart ? 'pl-0 ml-0.5 rounded-l-full' : ''}
+        ${isRangeEnd ? 'pr-0 mr-0.5 rounded-r-full' : ''}
       `}
       onMouseEnter={() => onHoverDate(date)}
       onClick={() => onSelectDate(date)}
@@ -38,10 +38,10 @@ export function Day({
           w-7 h-7 p-0.5 flex items-center justify-center rounded-full border-2 border-transparent
           ${isInRange ? 'hover:!text-zinc-400' : ''}
           ${isCurrentMonth ? 'text-zinc-300' : 'text-zinc-500'}
-          ${isSelected && !isInRange ? '!text-lime-300 border-2 border-zinc-800' : ''}
-          ${isToday ? 'bg-lime-300 !text-lime-950 border-2 border-lime-300' : ''}
-          ${isToday && isSelected ? 'bg-zinc-800 !text-lime-300' : ''}
-          ${isToday ? 'hover:!text-zinc-100 hover:!bg-transparent' : ''}
+          ${isSelected && !isInRange ? '!text-lime-300 border-zinc-800' : ''}
+          ${isToday ? 'bg-lime-300 !text-lime-950 border-lime-300' : ''}
+          ${isToday ? 'hover:!text-zinc-100' : ''}
+          ${isToday && isSelected && (isRangeStart && isRangeEnd || !isInRange) ? 'bg-zinc-800 !text-zinc-300 !border-lime-300' : ''}
         hover:!bg-zinc-800
         `}
       >

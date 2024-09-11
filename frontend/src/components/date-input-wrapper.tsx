@@ -1,5 +1,4 @@
-import { DatePicker, DatePickerProps } from "./date-picker"
-import { getDateRange } from "./date-picker/calendar"
+import { DatePicker, DatePickerProps, getDateRange } from "./date-picker"
 import { InputWrapperProps } from "./input-wrapper"
 
 import { useRef, useState } from "react"

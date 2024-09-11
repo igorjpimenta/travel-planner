@@ -1,4 +1,4 @@
-import { DatePickerProps } from '.'
+import { DatePickerProps, getDateRange } from '.'
 import { Day } from './calendar-day'
 import { getDaysInMonth, isSameDay, isCurrentMonth } from './utils'
 
@@ -11,13 +11,6 @@ export interface CalendarProps extends Pick<DatePickerProps, 'mode'> {
   currentYear: number
   onSelectDate: (date: Date) => void
   onHoverDate: (date: Date) => void
-}
-
-export function getDateRange(startDate: Date, finalDate: Date) {
-  const rangeStart = startDate < finalDate ? startDate : finalDate
-  const rangeEnd = startDate > finalDate ? startDate : finalDate
-
-  return { rangeStart, rangeEnd }
 }
 
 export function Calendar({

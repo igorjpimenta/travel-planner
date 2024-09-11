@@ -19,6 +19,13 @@ export interface DatePickerProps {
   endDateState: [Date | null, React.Dispatch<React.SetStateAction<Date | null>>]
 }
 
+export function getDateRange(startDate: Date, finalDate: Date) {
+  const rangeStart = startDate < finalDate ? startDate : finalDate
+  const rangeEnd = startDate > finalDate ? startDate : finalDate
+
+  return { rangeStart, rangeEnd }
+}
+
 export function DatePicker({
   onDateChange,
   containerOpen,
@@ -33,6 +40,8 @@ export function DatePicker({
   const [selectedDate, setSelectedDate] = selectedDateState
   const [startDate, setStartDate] = startDateState
   const [endDate, setEndDate] = endDateState
+  const [startPrevDate, setPrevStartDate] = useState<Date | null>(startDate)
+  const [endPrevDate, setPrevEndDate] = useState<Date | null>(endDate)
 
   const [currentMonth, setCurrentMonth] = useState<number>((selectedDate || new Date()).getMonth())
   const [currentYear, setCurrentYear] = useState<number>((selectedDate || new Date()).getFullYear())
@@ -43,11 +52,12 @@ export function DatePicker({
   function handleClickOutside() {
     let date = selectedDate || new Date()
 
-    // if (mode === 'dateRange' && startDate && !endDate) {
-    //   setStartDate(null)
-    //   setSelectedDate(null)
-    //   date = new Date()
-    // }
+    if (mode === 'dateRange') {
+      setStartDate(startPrevDate)
+      setEndDate(endPrevDate)
+      setSelectedDate(endPrevDate)
+      date = endPrevDate || new Date()
+    }
     
     setContainerOpen(false)
     setCurrentMonth(date.getMonth())
@@ -67,14 +77,22 @@ export function DatePicker({
       setStartDate(date)
 
     } else if (!endDate) {
-      setEndDate(date)
-      setSelectedDate(date)
+      const { rangeStart, rangeEnd } = getDateRange(startDate, date)
+
+      setStartDate(rangeStart)
+      setEndDate(rangeEnd)
+      setSelectedDate(rangeEnd)
+
       setContainerOpen(false)
       onDateChange(date)
+      
+      setPrevStartDate(rangeStart)
+      setPrevEndDate(rangeEnd)
 
     } else {
       setStartDate(date)
-      setEndDate(null) // check if selectedDate is different than the startDate when already have endDate and then handle it not overriding the actual endDate until it be selected
+      setEndDate(null)
+      setSelectedDate(null)
     }
   }
 
