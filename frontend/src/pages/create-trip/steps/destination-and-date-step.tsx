@@ -1,5 +1,5 @@
 import { Button } from "../../../components/button"
-import { InputWrapper } from "../../../components/input-wrapper"
+import { DateInputWrapper } from "../../../components/date-input-wrapper"
 import { LocationInputWrapper } from "../../../components/location-input-wrapper"
 
 import { ArrowRight, Calendar, MapPin, Settings2 } from "lucide-react"
@@ -27,13 +27,12 @@ export function DestinationAndDateStep({
         placeholder="Where are you going?"
       />
 
-      <InputWrapper
-        theme="transparent"
+      <DateInputWrapper
         classNames="w-44"
         icon={Calendar}
         disabled={isGuestsInputOnpen}
-        name="date_range"
         placeholder="When?"
+        mode="dateRange"
       />
 
       <div className="w-px h-6 bg-zinc-800"></div>

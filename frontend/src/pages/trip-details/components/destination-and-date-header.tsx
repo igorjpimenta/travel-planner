@@ -1,9 +1,8 @@
 import { Button } from "../../../components/button"
 import { LocationInputWrapper } from "../../../components/location-input-wrapper"
-import { InputWrapper } from "../../../components/input-wrapper"
+import { DateInputWrapper } from "../../../components/date-input-wrapper"
 
 import { ArrowRight, Calendar, MapPin, Settings2 } from "lucide-react"
-import { useState } from "react"
 
 interface DestinationAndDateHeaderProps {
   enableChangeTripInfos: () => void
@@ -16,8 +15,6 @@ export function DestinationAndDateHeader({
   changeTripInfos,
   isChangeTripInfosEnabled,
 }: DestinationAndDateHeaderProps) {
-  const [dateRangeInputValue, setDateRangeInputValue] = useState("August, 17 to 23")
-
   return (
     <div className="h-16 bg-zinc-900 px-4 rounded-xl flex items-center shadow-shape justify-between">
       <LocationInputWrapper
@@ -32,15 +29,12 @@ export function DestinationAndDateHeader({
       />
 
       <div className="flex items-center gap-5">
-        <InputWrapper
-          theme="transparent"
+        <DateInputWrapper
           classNames="w-44"
           icon={Calendar}
           disabled={!isChangeTripInfosEnabled}
-          name="date_range"
-          value={dateRangeInputValue}
-          onChange={(e) => setDateRangeInputValue(e.target.value)}
           placeholder="When?"
+          mode="dateRange"
         />
 
         <div className="w-px h-6 bg-zinc-800"></div>
